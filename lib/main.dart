@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_calculator/bloc/inoutdisplay_bloc.dart';
 import 'package:flutter_calculator/bloc/thememodes_bloc.dart';
+import 'package:flutter_calculator/screens/main_screen.dart';
+import 'package:flutter_calculator/widgets/theme_toggler.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +18,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<ThemeModeBloc>(
           create: (BuildContext context) => ThemeModeBloc(),
         ),
+        BlocProvider<InOutDisplayBloc>(
+            create: (BuildContext context) => InOutDisplayBloc()),
       ],
       child: BlocBuilder<ThemeModeBloc, ThemeMode>(
           builder: (context, ThemeMode thememode) {
@@ -27,6 +32,14 @@ class MyApp extends StatelessWidget {
               backgroundColor: Color(0xFF22252D)),
           debugShowCheckedModeBanner: false,
           themeMode: thememode,
+          home: Scaffold(
+            appBar: AppBar(
+              title: ThemeTogglerWidget(),
+            ),
+            body: SafeArea(
+              child: MainScreen(),
+            ),
+          ),
         );
       }),
     );
