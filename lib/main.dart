@@ -34,10 +34,15 @@ class MyApp extends StatelessWidget {
           themeMode: thememode,
           home: Scaffold(
             appBar: AppBar(
+              elevation: 0.0,
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
               title: ThemeTogglerWidget(),
             ),
             body: SafeArea(
-              child: MainScreen(),
+              child: Center(
+                child: MainScreen(),
+              ),
             ),
           ),
         );
