@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_calculator/widgets/themedata.dart';
 import 'package:flutter_calculator/bloc/inoutdisplay_bloc.dart';
 
 class InOutDisplayTextView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BlocBuilder<InOutDisplayBloc, CalculatorCurrentState>(
+      builder: (context, CalculatorCurrentState currentstate) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              flex: 2,
+              child: InputTextView(inputs: currentstate.inputs),
+            ),
+            Expanded(
+                flex: 1,
+                child: OutputTextView(
+                  text: currentstate.outputText,
+                ))
+          ],
+        );
+      },
+    );
   }
 }
 
-class ResultOutputTextView extends StatelessWidget {
+class OutputTextView extends StatelessWidget {
   final String text;
 
-  const ResultOutputTextView({this.text});
+  const OutputTextView({this.text});
 
   @override
   Widget build(BuildContext context) {
