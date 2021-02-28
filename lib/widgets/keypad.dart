@@ -106,7 +106,7 @@ class KeypadViewGrid extends StatelessWidget {
               KeypadButton(
                 labelColor: Color(0xffF37B7B),
                 darkTheme: darkmode,
-                label: 'x',
+                label: '×',
                 onPressed: () {
                   context.read<InOutDisplayBloc>().add(KeypadEventState(
                       clickedLabel: '*', eventMode: KeypadEvents.operators));
