@@ -6,10 +6,10 @@ import 'package:flutter_calculator/screens/main_screen.dart';
 import 'package:flutter_calculator/widgets/theme_toggler.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(CalculatorApp());
 }
 
-class MyApp extends StatelessWidget {
+class CalculatorApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,13 @@ class MyApp extends StatelessWidget {
           builder: (context, ThemeMode thememode) {
         return MaterialApp(
           theme: ThemeData.light().copyWith(
-              buttonColor: Color(0xFF272B33),
-              backgroundColor: Color(0xffFFFFFF)),
+            textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Lato'),
+            backgroundColor: Color(0xffFFFFFF),
+          ),
           darkTheme: ThemeData.dark().copyWith(
-              buttonColor: Color(0xFFF7F7F7),
-              backgroundColor: Color(0xFF22252D)),
+              textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Lato'),
+              backgroundColor: Color(0xFF000000),
+              scaffoldBackgroundColor: Color(0xFF000000)),
           debugShowCheckedModeBanner: false,
           themeMode: thememode,
           home: Scaffold(
@@ -40,9 +42,7 @@ class MyApp extends StatelessWidget {
               title: ThemeTogglerWidget(),
             ),
             body: SafeArea(
-              child: Center(
-                child: MainScreen(),
-              ),
+              child: MainScreen(),
             ),
           ),
         );

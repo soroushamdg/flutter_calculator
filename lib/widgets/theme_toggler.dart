@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_calculator/bloc/thememodes_bloc.dart';
 
-const Duration animationDuration = Duration(milliseconds: 300);
+const Duration animationDuration = Duration(milliseconds: 900);
 
 class ThemeTogglerWidget extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class ThemeTogglerWidget extends StatelessWidget {
           children: [
             AnimatedPositioned(
               duration: animationDuration,
-              curve: Curves.easeIn,
+              curve: Curves.bounceInOut,
               top: 3.0,
               left: (currenttheme == ThemeMode.light) ? 50.0 : 0.0,
               right: (currenttheme == ThemeMode.light) ? 0.0 : 50.0,
@@ -36,7 +36,7 @@ class ThemeTogglerWidget extends StatelessWidget {
                   duration: animationDuration,
                   transitionBuilder:
                       (Widget child, Animation<double> animation) {
-                    return ScaleTransition(child: child, scale: animation);
+                    return FadeTransition(child: child, opacity: animation);
                   },
                   child: (currenttheme == ThemeMode.light)
                       ? Icon(
