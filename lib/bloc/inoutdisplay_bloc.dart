@@ -3,7 +3,7 @@ import 'package:math_expressions/math_expressions.dart';
 
 const operators = ['+', '*', '/', '-', '%'];
 
-enum KeypadEvents { number, operators, clear, calculate }
+enum KeypadEvents { number, operators, clear, backspace, calculate }
 
 class KeypadEventState {
   final KeypadEvents eventMode;
@@ -84,6 +84,23 @@ class CalculatorCurrentState {
     return;
   }
 
+  void backspace() {
+    if (_inputs.isEmpty) {
+      return;
+    }
+    if (isNumeric(inputs.last)) {
+      _inputs.last = _inputs.last.substring(0, _inputs.last.length - 1);
+      _outputText = _inputs.last;
+      print(_outputText);
+      return;
+    }
+    if (operators.contains(inputs.last)) {
+      _inputs.removeLast();
+      _outputText = inputs.last;
+      return;
+    }
+  }
+
   CalculatorCurrentState();
 
   CalculatorCurrentState.fromJson(Map<String, dynamic> jsonObject) {
@@ -121,6 +138,10 @@ class InOutDisplayBloc extends Bloc<KeypadEventState, CalculatorCurrentState> {
         break;
       case (KeypadEvents.calculate):
         _current.calculate();
+        yield _current;
+        break;
+      case (KeypadEvents.backspace):
+        _current.backspace();
         yield _current;
         break;
       default:

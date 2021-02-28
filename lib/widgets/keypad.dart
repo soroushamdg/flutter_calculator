@@ -221,7 +221,7 @@ class KeypadViewGrid extends StatelessWidget {
                 label: '<',
                 onPressed: () {
                   context.read<InOutDisplayBloc>().add(KeypadEventState(
-                      clickedLabel: 'bs', eventMode: KeypadEvents.operators));
+                      clickedLabel: 'bs', eventMode: KeypadEvents.backspace));
                 },
               ),
               KeypadButton(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_calculator/bloc/thememodes_bloc.dart';
 
-const Duration animationDuration = Duration(milliseconds: 900);
+const Duration animationDuration = Duration(milliseconds: 600);
 
 class ThemeTogglerWidget extends StatelessWidget {
   @override
